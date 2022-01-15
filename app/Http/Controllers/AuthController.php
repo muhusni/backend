@@ -29,7 +29,9 @@ class AuthController extends Controller
     {
         $data = (object) [
             'user' => auth()->user(),
-            'menus' => auth()->user()->menus()->with('submenus')->get()
+            'menus' => auth()->user()->menus()->with(['submenus' => function ($q) {
+                $q->orderby('urutan');
+              }])->orderby('urutan')->get()
         ];
         return $data;
     }
