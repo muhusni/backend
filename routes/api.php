@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\Users\usersController;
 
 /*
@@ -27,4 +28,5 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::get('/users', [usersController::class, 'index']);
         Route::get('/users/{id}', [usersController::class, 'showUser']);
     });
+    Route::post('excel', [ExcelController::class, 'excel']);
 });
