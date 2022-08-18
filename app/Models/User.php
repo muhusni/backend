@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'username',
         'password',
     ];
 
@@ -41,19 +42,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function user_menus () 
+    public function username()
     {
-        return $this->hasMany(UserMenu::class);
-    }
-
-    public function menus ()
-    {
-        return $this->belongsToMany(Menu::class, 'user_menus');
-    }
-
-    public function submenus ()
-    {
-        return $this->belongsToMany(Submenus::class);
+         return 'username';
     }
 }
