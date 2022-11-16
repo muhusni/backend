@@ -9,7 +9,7 @@ class AuthController extends Controller
 {
     public function login (Request $request) {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'username' => ['required'],
             'password' => ['required'],
         ]);
         if (Auth::attempt($credentials)) {
@@ -27,12 +27,7 @@ class AuthController extends Controller
 
     public function me () 
     {
-        $data = (object) [
-            'user' => auth()->user(),
-            'menus' => auth()->user()->menus()->with(['submenus' => function ($q) {
-                $q->orderby('urutan');
-              }])->orderby('urutan')->get()
-        ];
+        $data = auth()->user();
         return $data;
     }
 

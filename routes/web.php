@@ -14,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return response()->json([
+        'Name' => env('APP_NAME'),
+        'Laravel Version' => app()->version()
+    ]);
 });
